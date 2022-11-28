@@ -1,57 +1,116 @@
-<nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid container-lg">
-        <div class="d-lg-grid col-lg-1">
-            <a class="navbar-brand" href="#">
-                <img src="https://getbootstrap.com//docs/5.2/assets/brand/bootstrap-logo.svg" alt="Bootstrap" width="45" height="36">
-            </a>
-        </div>
-        <div class="d-lg-grid col-lg-11">
-            <div class="row">
-                <div class="d-lg-grid col-lg-9">
-                    <a class="navbar-brand" href="#">Počítačový bazar</a>
-                    <div class="collapse navbar-collapse border-1" id="navbarToggler">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.html">Domů</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="about.html">O nás</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Kontakt</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="product1.html">Produkty1</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="product2.html">Produkty2</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Kategorie</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">Obchodní podmínky</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+<!--<nav class="navbar navbar-expand-lg bg-light">-->
+<!--    <div class="container-fluid container-lg">-->
+<!--        <div class="d-lg-grid col-lg-1 flex-shrink-1">-->
+<!--            <a class="navbar-brand" href="#">-->
+<!--                <img src="https://getbootstrap.com//docs/5.2/assets/brand/bootstrap-logo.svg" alt="Bootstrap" width="45" height="36">-->
+<!--            </a>-->
+<!--        </div>-->
+<!--        <div class="d-lg-grid col-lg-11 flex-grow-1">-->
+<!--            <div class="row">-->
+<!--                <div class="d-lg-grid col-lg-9">-->
+<!--                    <a class="navbar-brand" href="#">Počítačový bazar</a>-->
+<!--                    <div class="collapse navbar-collapse border-1" id="navbarToggler">-->
+<!--                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link" href="index.html">Domů</a>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link" href="about.html">O nás</a>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link" href="#">Kontakt</a>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link" href="product1.html">Produkty1</a>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link" href="product2.html">Produkty2</a>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link" href="#">Kategorie</a>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link active" href="#">Obchodní podmínky</a>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
 
-                <div class="col-lg-3 text-end">
-                    <div class="d-lg-grid mb-2">
-                        <button class="btn btn-secondary">
-                            <i class="bi bi-person"></i>
-                        </button>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                    </div>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
-                    </form>
-                </div>
+<!--                <div class="col-lg-3 text-end">-->
+<!--                    <div class="d-lg-grid mb-2">-->
+<!--                        <button class="btn btn-secondary">-->
+<!--                            <i class="bi bi-person"></i>-->
+<!--                        </button>-->
+<!--                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--                            <span class="navbar-toggler-icon"></span>-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                    <form class="d-flex" role="search">-->
+<!--                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
+<!--                        <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
+<div class="navbar bg-light m-0 p-0">
+    <div class="container-fluid justify-content-center">
+        <a class="navbar-brand mb-0 h1" href="#">Počítačový bazar</a>
+    </div>
+</div>
+
+<nav class="navbar navbar-expand-lg bg-light pt-0" aria-label="Offcanvas navbar large">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="https://getbootstrap.com//docs/5.2/assets/brand/bootstrap-logo.svg" alt="Bootstrap" width="45" height="36">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar2">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Počítačový bazar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Domů</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">O nás</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Kontakt</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="products.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Produkty
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="product1.html">Produkty1</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="product2.html">Produkty2</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="categories.html">Kategorie</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="terms.html">Obchodní podmínky</a>
+                    </li>
+                </ul>
             </div>
         </div>
+
+
+        <form class="d-flex mt-3 mt-lg-0" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
     </div>
 </nav>
 
