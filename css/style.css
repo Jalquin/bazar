@@ -5,10 +5,14 @@
 }
 /* Centered text */
 .text-over-img {
-    background-color: blueviolet;
-    color: coral;
+    color: black;
+    background-color: white;
+    padding: 6px;
+    font-weight: bold;
+    font-size: 24px;
+    border: 1px solid black;
     position: absolute;
-    top: 85%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
