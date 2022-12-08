@@ -6,10 +6,10 @@
 /* Centered text */
 .text-over-img {
     color: black;
-    background-color: white;
+    background-color: rgba(255,255,255,0.8);
     padding: 6px;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 2vh;
     border: 1px solid black;
     position: absolute;
     top: 50%;
