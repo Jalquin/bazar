@@ -23,3 +23,8 @@
     width: 100%;
     z-index: 1;
 }
+
+.hover-red:hover {
+    color: red !important;
+    transition: 0.2s;
+}
