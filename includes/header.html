@@ -1,33 +1,30 @@
-
-<!--<div class="navbar bg-light m-0 p-0">-->
-<!--    <div class="container ">-->
-<!--        <div class="container-fluid p-0 d-flex justify-content-center">-->
-<!--            <a class="navbar-brand mb-0 h1" href="#">PC Bazarooooš</a>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-<nav class="navbar navbar-expand-lg bg-light pt-0" aria-label="Offcanvas navbar large">
+<nav aria-label="Navigation" class="navbar navbar-expand-lg bg-light pt-0">
     <div class="container border-bottom">
         <div class="container-fluid p-0 justify-content-between align-items-center d-flex">
             <a class="navbar-brand p-0 m-0" href="index.html">
-                <img class="logo" src="images/logo.png" alt="Logo Bazarooooš">
+                <img alt="Logo Bazarooooš" class="logo" src="images/logo.png">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar2">
+            <button aria-controls="Navigation" class="navbar-toggler" data-bs-target="#Navigation"
+                    data-bs-toggle="offcanvas"
+                    id="menu"
+                    type="button">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas offcanvas-end" id="Navigation"
+                 tabindex="-1">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Počítačový bazar</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    <h5 class="offcanvas-title">Bazarooooš</h5>
+                    <button aria-label="Close" class="btn-close" data-bs-dismiss="offcanvas" type="button"><span class="d-none d-lg-inline">Menu</span></button>
                 </div>
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-around flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.html"><i class="bi bi-house"></i> Home</a>
+                            <a aria-current="page" class="nav-link" href="index.html"><i class="bi bi-house"></i>
+                                Home</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="products.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+                               href="products.html" role="button">
                                 <i class="bi bi-pc-display"></i> Produkty
                             </a>
                             <ul class="dropdown-menu">
@@ -38,10 +35,10 @@
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="product1.html">Produkt1</a>
+                                    <a class="nav-link" href="product1.html">Produkt1</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="product2.html">Produkt2</a>
+                                    <a class="nav-link" href="product2.html">Produkt2</a>
                                 </li>
                             </ul>
                         </li>
@@ -57,11 +54,14 @@
         </div>
         <div class="container-fluid p-0 pb-1 mt-1 mt-lg-0 d-flex justify-content-between justify-content-lg-end">
 
-            <a href="login.html" class="me-3 btn btn-outline-danger"><i class="bi bi-person"></i><span class="d-none d-lg-inline"> Přihlásit</span></a>
+            <a aria-label="Login" class="me-3 btn btn-outline-danger" href="login.html">
+                <i class="bi bi-person"></i><span class="d-none d-lg-inline"> Přihlásit</span>
+            </a>
 
             <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Vyhledej inzeráty..." aria-label="Search">
-                <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i></button>
+                <input aria-label="Search" class="form-control me-2" placeholder="Vyhledej inzeráty..." type="search">
+                <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i><span
+                        class="d-none"> Vyhledat</span></button>
             </form>
         </div>
     </div>
