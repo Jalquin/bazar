@@ -14,7 +14,8 @@
                  tabindex="-1">
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title">Bazarooooš</h5>
-                    <button aria-label="Close" class="btn-close" data-bs-dismiss="offcanvas" type="button"><span class="d-none d-lg-inline">Menu</span></button>
+                    <button aria-label="Close" class="btn-close" data-bs-dismiss="offcanvas" type="button"><span
+                            class="d-none d-lg-inline">Menu</span></button>
                 </div>
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-around flex-grow-1">
@@ -22,28 +23,23 @@
                             <a aria-current="page" class="nav-link" href="index.html"><i class="bi bi-house"></i>
                                 Home</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-                               href="products.html" role="button">
-                                <i class="bi bi-pc-display"></i> Produkty
+                        <li class="btn-group d-table d-lg-flex nav-item dropdown">
+                            <a class="nav-link d-inline" href="products.html"><i class="bi bi-pc-display"></i> Produkty</a>
+                            <a aria-expanded="false"
+                               class="nav-link d-inline dropdown-toggle dropdown-toggle-split ms-2 ms-lg-0 "
+                               data-bs-toggle="dropdown"
+                               role="button">
+                                <span class="visually-hidden">Toggle Dropdown</span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li>
-                                    <a class="nav-link" href="categories.html"><i class="bi bi-bookmark"></i> Kategorie</a>
-                                </li>
+                                <li><a class="dropdown-item" href="categories.html"><i class="bi bi-bookmark"></i>
+                                    Kategorie</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li>
-                                    <a class="nav-link" href="product1.html">Produkt1</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link" href="product2.html">Produkt2</a>
-                                </li>
+                                <li><a class="dropdown-item" href="product1.html">Produkt1</a></li>
+                                <li><a class="dropdown-item" href="product2.html">Produkt2</a></li>
                             </ul>
-                        </li>
-                        <li class="nav-item">
-
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="faq.html"><i class="bi bi-patch-question"></i> FAQ</a>
@@ -54,9 +50,31 @@
         </div>
         <div class="container-fluid p-0 pb-1 mt-1 mt-lg-0 d-flex justify-content-between justify-content-lg-end">
 
-            <a aria-label="Login" class="me-3 btn btn-outline-danger" href="login.html">
-                <i class="bi bi-person"></i><span class="d-none d-lg-inline"> Přihlásit</span>
-            </a>
+            <div class="btn-group me-3">
+                <a aria-label="Login" class="btn btn-outline-danger" href="login.html">
+                    <i class="bi bi-person"></i><span class="d-none d-lg-inline"> Přihlásit</span>
+                </a>
+                <button aria-expanded="false" class="btn btn-outline-danger dropdown-toggle dropdown-toggle-split"
+                        data-bs-toggle="dropdown" type="button">
+                    <span class="visually-hidden">Otevřít profilové menu</span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="myListings.html"><i class="bi bi-card-list"></i> Moje
+                            inzeráty</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="myOrders.html"><i class="bi bi-cart4"></i> Koupené zboží</a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="addListing.html"><i class="bi bi-bookmark-plus"></i> Přidat
+                            inzerát</a>
+                    </li>
+                </ul>
+            </div>
 
             <form class="d-flex" role="search">
                 <input aria-label="Search" class="form-control me-2" placeholder="Vyhledej inzeráty..." type="search">
