@@ -46,3 +46,7 @@
     object-fit: contain;
     max-height: 300px;
 }
+
+.location-search {
+    min-width: 300px !important;
+}
