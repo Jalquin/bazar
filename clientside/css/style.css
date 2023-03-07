@@ -1,0 +1,52 @@
+.container-img-text {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.text-over-img {
+    color: black;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 6px;
+    border: 1px solid black;
+    position: absolute;
+    transition: 0.2s;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.text-over-img h2 {
+    margin: 0;
+}
+
+.text-over-img:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+}
+
+.map {
+    height: 100%;
+    min-height: 200px;
+    width: 100%;
+    z-index: 1;
+}
+
+.hover-red:hover {
+    color: red !important;
+    transition: 0.2s;
+}
+
+.logo {
+    width: auto;
+    height: 70px;
+}
+
+.card-img-top {
+    object-fit: contain;
+    max-height: 300px;
+}
+
+.location-search {
+    min-width: 300px !important;
+}
