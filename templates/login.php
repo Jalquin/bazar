@@ -15,19 +15,19 @@
     <div class="row mb-2">
         <div class="col-12 col-lg-6">
             <h1>Přihlášení</h1>
-            <form>
+            <form action="scripts/login.php" method="POST">
                 <div class="mb-3">
                     <label class="form-label" for="email"><i class="bi bi-envelope-at"></i> E-mail</label>
-                    <input class="form-control" id="email" type="email">
+                    <input class="form-control" name="email" id="email" type="email">
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="password"><i class="bi bi-lock"></i> Heslo</label>
-                    <input class="form-control" id="password" type="password">
+                    <input class="form-control" name="password" id="password" type="password">
                 </div>
-                <a class="btn btn-primary" href="profile.php"><i class="bi bi-box-arrow-in-right"></i> Přihlásit se</a>
+                <input type="submit" name="submit" class="btn btn-primary" value="Přihlásit se">
             </form>
-            <a class="btn btn-link" href="forgot.php">Zapomenuté heslo?</a>
-            <a class="btn btn-link" href="register.php">Registrovat</a>
+            <a class="btn btn-link" href="index.php?pages=forgot">Zapomenuté heslo?</a>
+            <a class="btn btn-link" href="index.php?pages=register">Registrovat</a>
         </div>
         <div class="col-12 col-lg-6">
             <img alt="team"

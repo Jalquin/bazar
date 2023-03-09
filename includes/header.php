@@ -51,9 +51,22 @@
         <div class="container-fluid p-0 pb-1 mt-1 mt-lg-0 d-flex justify-content-between justify-content-lg-end">
 
             <div class="btn-group me-3">
-                <a aria-label="Login" class="btn btn-outline-danger" href="index.php?pages=login">
-                    <i class="bi bi-person"></i><span class="d-none d-lg-inline"> Přihlásit</span>
+                <?php
+                if(isset($_SESSION["jmeno"])){
+                    ?>
+                <a aria-label="Login" class="btn btn-outline-danger" href="scripts/logout.php">
+                    <i class="bi bi-person"></i><span class="d-none d-lg-inline"> Odhlásit</span>
                 </a>
+                <?php
+                } else{
+                ?>
+                    <a aria-label="Login" class="btn btn-outline-danger" href="index.php?pages=login">
+                        <i class="bi bi-person"></i><span class="d-none d-lg-inline"> Přihlásit</span>
+                    </a>
+                <?php
+                }
+                ?>
+
                 <button aria-expanded="false" class="btn btn-outline-danger dropdown-toggle dropdown-toggle-split"
                         data-bs-toggle="dropdown" type="button">
                     <span class="visually-hidden">Otevřít profilové menu</span>

@@ -18,9 +18,9 @@ USE `bazos` ;
 -- Table `bazos`.`Status`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bazos`.`Status` (
-`id` INT NOT NULL,
-`nazev` VARCHAR(45) NOT NULL,
-PRIMARY KEY (`id`))
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nazev` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
@@ -28,9 +28,9 @@ ENGINE = InnoDB;
 -- Table `bazos`.`Zbozi`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bazos`.`Zbozi` (
-`id` INT NOT NULL,
-`nazev` VARCHAR(45) NOT NULL,
-PRIMARY KEY (`id`))
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nazev` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
@@ -38,27 +38,27 @@ ENGINE = InnoDB;
 -- Table `bazos`.`Inzerat`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bazos`.`Inzerat` (
-`id` INT NOT NULL,
-`kratkypopis` VARCHAR(45) NOT NULL,
-`dlouhypopis` VARCHAR(45) NULL,
-`cena` VARCHAR(45) NOT NULL,
-`tel` VARCHAR(45) NOT NULL,
-`lokace` VARCHAR(45) NOT NULL,
-`inzerat_status_id` INT NOT NULL DEFAULT 1,
-`Zbozi_id` INT NOT NULL,
-PRIMARY KEY (`id`, `inzerat_status_id`, `Zbozi_id`),
-INDEX `fk_Inzerat_inzerat_status_idx` (`inzerat_status_id` ASC),
-INDEX `fk_Inzerat_Zbozi1_idx` (`Zbozi_id` ASC),
-CONSTRAINT `fk_Inzerat_inzerat_status`
-FOREIGN KEY (`inzerat_status_id`)
-REFERENCES `bazos`.`Status` (`id`)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION,
-CONSTRAINT `fk_Inzerat_Zbozi1`
-FOREIGN KEY (`Zbozi_id`)
-REFERENCES `bazos`.`Zbozi` (`id`)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION)
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `kratkypopis` VARCHAR(45) NOT NULL,
+  `dlouhypopis` VARCHAR(45) NULL,
+  `cena` VARCHAR(45) NOT NULL,
+  `tel` VARCHAR(45) NOT NULL,
+  `lokace` VARCHAR(45) NOT NULL,
+  `inzerat_status_id` INT NOT NULL DEFAULT 1,
+  `Zbozi_id` INT NOT NULL,
+  PRIMARY KEY (`id`, `inzerat_status_id`, `Zbozi_id`),
+  INDEX `fk_Inzerat_inzerat_status_idx` (`inzerat_status_id` ASC) ,
+  INDEX `fk_Inzerat_Zbozi1_idx` (`Zbozi_id` ASC) ,
+  CONSTRAINT `fk_Inzerat_inzerat_status`
+    FOREIGN KEY (`inzerat_status_id`)
+    REFERENCES `bazos`.`Status` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Inzerat_Zbozi1`
+    FOREIGN KEY (`Zbozi_id`)
+    REFERENCES `bazos`.`Zbozi` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -66,11 +66,11 @@ ENGINE = InnoDB;
 -- Table `bazos`.`Obrazky`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bazos`.`Obrazky` (
-`id` INT NOT NULL,
-`nazev` VARCHAR(45) NOT NULL,
-`src` VARCHAR(45) NOT NULL,
-`alt` VARCHAR(45) NOT NULL,
-PRIMARY KEY (`id`))
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nazev` VARCHAR(45) NOT NULL,
+  `src` VARCHAR(45) NOT NULL,
+  `alt` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
@@ -78,20 +78,20 @@ ENGINE = InnoDB;
 -- Table `bazos`.`Uzivatel`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bazos`.`Uzivatel` (
-`id` INT NOT NULL,
-`jmeno` VARCHAR(45) NOT NULL,
-`prijmeni` VARCHAR(45) NOT NULL,
-`email` VARCHAR(45) NOT NULL,
-`heslo` VARCHAR(45) NOT NULL,
-`opravneni` INT NOT NULL DEFAULT 0,
-`Obrazky_id` INT NOT NULL DEFAULT 1,
-PRIMARY KEY (`id`, `Obrazky_id`),
-INDEX `fk_Uzivatel_Obrazky1_idx` (`Obrazky_id` ASC),
-CONSTRAINT `fk_Uzivatel_Obrazky1`
-FOREIGN KEY (`Obrazky_id`)
-REFERENCES `bazos`.`Obrazky` (`id`)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION)
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `jmeno` VARCHAR(45) NOT NULL,
+  `prijmeni` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `heslo` VARCHAR(45) NOT NULL,
+  `opravneni` INT NOT NULL DEFAULT 0,
+  `Obrazky_id` INT NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id`),
+  INDEX `fk_Uzivatel_Obrazky1_idx` (`Obrazky_id` ASC) ,
+  CONSTRAINT `fk_Uzivatel_Obrazky1`
+    FOREIGN KEY (`Obrazky_id`)
+    REFERENCES `bazos`.`Obrazky` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -99,22 +99,22 @@ ENGINE = InnoDB;
 -- Table `bazos`.`Uzivatel_zakoupil_zbozi`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bazos`.`Uzivatel_zakoupil_zbozi` (
-`Zbozi_id` INT NOT NULL,
-`Uzivatel_id` INT NOT NULL,
-`datum_nakupu` DATE NOT NULL,
-PRIMARY KEY (`Zbozi_id`, `Uzivatel_id`),
-INDEX `fk_Zbozi_has_Uzivatel_Uzivatel1_idx` (`Uzivatel_id` ASC),
-INDEX `fk_Zbozi_has_Uzivatel_Zbozi1_idx` (`Zbozi_id` ASC),
-CONSTRAINT `fk_Zbozi_has_Uzivatel_Zbozi1`
-FOREIGN KEY (`Zbozi_id`)
-REFERENCES `bazos`.`Zbozi` (`id`)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION,
-CONSTRAINT `fk_Zbozi_has_Uzivatel_Uzivatel1`
-FOREIGN KEY (`Uzivatel_id`)
-REFERENCES `bazos`.`Uzivatel` (`id`)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION)
+  `Zbozi_id` INT NOT NULL,
+  `Uzivatel_id` INT NOT NULL,
+  `datum_nakupu` DATE NOT NULL,
+  PRIMARY KEY (`Zbozi_id`, `Uzivatel_id`),
+  INDEX `fk_Zbozi_has_Uzivatel_Uzivatel1_idx` (`Uzivatel_id` ASC) ,
+  INDEX `fk_Zbozi_has_Uzivatel_Zbozi1_idx` (`Zbozi_id` ASC) ,
+  CONSTRAINT `fk_Zbozi_has_Uzivatel_Zbozi1`
+    FOREIGN KEY (`Zbozi_id`)
+    REFERENCES `bazos`.`Zbozi` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Zbozi_has_Uzivatel_Uzivatel1`
+    FOREIGN KEY (`Uzivatel_id`)
+    REFERENCES `bazos`.`Uzivatel` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -122,22 +122,22 @@ ENGINE = InnoDB;
 -- Table `bazos`.`Uzivatel_vytvoril_inzerat`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bazos`.`Uzivatel_vytvoril_inzerat` (
-`Uzivatel_id` INT NOT NULL,
-`Inzerat_id` INT NOT NULL,
-`datum_zalozeni` DATE NOT NULL,
-PRIMARY KEY (`Uzivatel_id`, `Inzerat_id`),
-INDEX `fk_Uzivatel_has_Inzerat_Inzerat1_idx` (`Inzerat_id` ASC),
-INDEX `fk_Uzivatel_has_Inzerat_Uzivatel1_idx` (`Uzivatel_id` ASC),
-CONSTRAINT `fk_Uzivatel_has_Inzerat_Uzivatel1`
-FOREIGN KEY (`Uzivatel_id`)
-REFERENCES `bazos`.`Uzivatel` (`id`)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION,
-CONSTRAINT `fk_Uzivatel_has_Inzerat_Inzerat1`
-FOREIGN KEY (`Inzerat_id`)
-REFERENCES `bazos`.`Inzerat` (`id`)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION)
+  `Uzivatel_id` INT NOT NULL,
+  `Inzerat_id` INT NOT NULL,
+  `datum_zalozeni` DATE NOT NULL,
+  PRIMARY KEY (`Uzivatel_id`, `Inzerat_id`),
+  INDEX `fk_Uzivatel_has_Inzerat_Inzerat1_idx` (`Inzerat_id` ASC) ,
+  INDEX `fk_Uzivatel_has_Inzerat_Uzivatel1_idx` (`Uzivatel_id` ASC) ,
+  CONSTRAINT `fk_Uzivatel_has_Inzerat_Uzivatel1`
+    FOREIGN KEY (`Uzivatel_id`)
+    REFERENCES `bazos`.`Uzivatel` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Uzivatel_has_Inzerat_Inzerat1`
+    FOREIGN KEY (`Inzerat_id`)
+    REFERENCES `bazos`.`Inzerat` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -145,9 +145,9 @@ ENGINE = InnoDB;
 -- Table `bazos`.`Kategorie`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bazos`.`Kategorie` (
-`id` INT NOT NULL,
-`nazev` VARCHAR(45) NOT NULL,
-PRIMARY KEY (`id`))
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nazev` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
@@ -155,21 +155,21 @@ ENGINE = InnoDB;
 -- Table `bazos`.`Zbozi_ma_kategorii`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bazos`.`Zbozi_ma_kategorii` (
-`Zbozi_id` INT NOT NULL,
-`Kategorie_id` INT NOT NULL,
-PRIMARY KEY (`Zbozi_id`, `Kategorie_id`),
-INDEX `fk_Zbozi_has_Kategorie_Kategorie1_idx` (`Kategorie_id` ASC) ,
-INDEX `fk_Zbozi_has_Kategorie_Zbozi1_idx` (`Zbozi_id` ASC),
-CONSTRAINT `fk_Zbozi_has_Kategorie_Zbozi1`
-FOREIGN KEY (`Zbozi_id`)
-REFERENCES `bazos`.`Zbozi` (`id`)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION,
-CONSTRAINT `fk_Zbozi_has_Kategorie_Kategorie1`
-FOREIGN KEY (`Kategorie_id`)
-REFERENCES `bazos`.`Kategorie` (`id`)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION)
+  `Zbozi_id` INT NOT NULL,
+  `Kategorie_id` INT NOT NULL,
+  PRIMARY KEY (`Zbozi_id`, `Kategorie_id`),
+  INDEX `fk_Zbozi_has_Kategorie_Kategorie1_idx` (`Kategorie_id` ASC) ,
+  INDEX `fk_Zbozi_has_Kategorie_Zbozi1_idx` (`Zbozi_id` ASC) ,
+  CONSTRAINT `fk_Zbozi_has_Kategorie_Zbozi1`
+    FOREIGN KEY (`Zbozi_id`)
+    REFERENCES `bazos`.`Zbozi` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Zbozi_has_Kategorie_Kategorie1`
+    FOREIGN KEY (`Kategorie_id`)
+    REFERENCES `bazos`.`Kategorie` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -177,24 +177,47 @@ ENGINE = InnoDB;
 -- Table `bazos`.`Zbozi_has_Obrazky`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bazos`.`Zbozi_has_Obrazky` (
-`Zbozi_id` INT NOT NULL,
-`Obrazky_id` INT NOT NULL,
-PRIMARY KEY (`Zbozi_id`, `Obrazky_id`),
-INDEX `fk_Zbozi_has_Obrazky_Obrazky1_idx` (`Obrazky_id` ASC) ,
-INDEX `fk_Zbozi_has_Obrazky_Zbozi1_idx` (`Zbozi_id` ASC) ,
-CONSTRAINT `fk_Zbozi_has_Obrazky_Zbozi1`
-FOREIGN KEY (`Zbozi_id`)
-REFERENCES `bazos`.`Zbozi` (`id`)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION,
-CONSTRAINT `fk_Zbozi_has_Obrazky_Obrazky1`
-FOREIGN KEY (`Obrazky_id`)
-REFERENCES `bazos`.`Obrazky` (`id`)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION)
+  `Zbozi_id` INT NOT NULL,
+  `Obrazky_id` INT NOT NULL,
+  PRIMARY KEY (`Zbozi_id`, `Obrazky_id`),
+  INDEX `fk_Zbozi_has_Obrazky_Obrazky1_idx` (`Obrazky_id` ASC) ,
+  INDEX `fk_Zbozi_has_Obrazky_Zbozi1_idx` (`Zbozi_id` ASC) ,
+  CONSTRAINT `fk_Zbozi_has_Obrazky_Zbozi1`
+    FOREIGN KEY (`Zbozi_id`)
+    REFERENCES `bazos`.`Zbozi` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Zbozi_has_Obrazky_Obrazky1`
+    FOREIGN KEY (`Obrazky_id`)
+    REFERENCES `bazos`.`Obrazky` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- -----------------------------------------------------
+-- Data for table `bazos`.`Status`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `bazos`;
+INSERT INTO `bazos`.`Status` (`id`, `nazev`) VALUES (1, 'aktivni');
+INSERT INTO `bazos`.`Status` (`id`, `nazev`) VALUES (2, 'rezervovany');
+INSERT INTO `bazos`.`Status` (`id`, `nazev`) VALUES (3, 'prodany');
+INSERT INTO `bazos`.`Status` (`id`, `nazev`) VALUES (4, 'skryty');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `bazos`.`Obrazky`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `bazos`;
+INSERT INTO `bazos`.`Obrazky` (`id`, `nazev`, `src`, `alt`) VALUES (1, 'default', 'default.jng', 'default image');
+
+COMMIT;
+

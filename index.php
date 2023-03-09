@@ -1,5 +1,6 @@
 <?php
 require("connect.php");
+session_start();
 
 $pages = $_GET["pages"] ?? "main";
 $splitpage = (explode('?', $pages));
@@ -24,7 +25,6 @@ $pagename = $splitpage[0];
 <body class="body">
 <?php
 
-
 include_once("includes/header.php");
 ?>
 <?php
@@ -35,7 +35,6 @@ else
 ?>
 <?php
 include_once("includes/footer.php");
-
 
 ?>
 </body>
