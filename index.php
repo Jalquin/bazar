@@ -1,5 +1,9 @@
 <?php
 require("connect.php");
+require("classes/uzivatelclass.php");
+require("classes/inzeratclass.php");
+require("classes/zboziclass.php");
+require("classes/kategorieclass.php");
 session_start();
 
 $pages = $_GET["pages"] ?? "main";

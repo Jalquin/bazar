@@ -54,8 +54,8 @@
                 <?php
                 if(isset($_SESSION["jmeno"])){
                     ?>
-                <a aria-label="Login" class="btn btn-outline-danger" href="scripts/logout.php">
-                    <i class="bi bi-person"></i><span class="d-none d-lg-inline"> Odhlásit</span>
+                <a aria-label="Login" class="btn btn-outline-danger" href="index.php?pages=profile&id=<?=$_SESSION["id"];?>">
+                    <i class="bi bi-person"></i><span class="d-none d-lg-inline"> Profil</span>
                 </a>
                 <?php
                 } else{
@@ -86,6 +86,15 @@
                         <a class="dropdown-item" href="index.php?pages=addListing"><i class="bi bi-bookmark-plus"></i> Přidat
                             inzerát</a>
                     </li>
+                    <?php
+                    if(isset($_SESSION["jmeno"])){
+                        ?>
+                        <li>
+                            <a class="dropdown-item" href="scripts/logout.php"> Logout </a>
+                        </li>
+                    <?php
+                    }
+                    ?>
                 </ul>
             </div>
 

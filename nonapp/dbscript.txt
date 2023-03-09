@@ -19,7 +19,7 @@ USE `bazos` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bazos`.`Status` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `nazev` VARCHAR(45) NOT NULL,
+  `status` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -204,10 +204,10 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bazos`;
-INSERT INTO `bazos`.`Status` (`id`, `nazev`) VALUES (1, 'aktivni');
-INSERT INTO `bazos`.`Status` (`id`, `nazev`) VALUES (2, 'rezervovany');
-INSERT INTO `bazos`.`Status` (`id`, `nazev`) VALUES (3, 'prodany');
-INSERT INTO `bazos`.`Status` (`id`, `nazev`) VALUES (4, 'skryty');
+INSERT INTO `bazos`.`Status` (`id`, `status`) VALUES (1, 'aktivni');
+INSERT INTO `bazos`.`Status` (`id`, `status`) VALUES (2, 'rezervovany');
+INSERT INTO `bazos`.`Status` (`id`, `status`) VALUES (3, 'prodany');
+INSERT INTO `bazos`.`Status` (`id`, `status`) VALUES (4, 'skryty');
 
 COMMIT;
 
@@ -217,7 +217,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bazos`;
-INSERT INTO `bazos`.`Obrazky` (`id`, `nazev`, `src`, `alt`) VALUES (1, 'default', 'default.jng', 'default image');
+INSERT INTO `bazos`.`Obrazky` (`id`, `nazev`, `src`, `alt`) VALUES (1, 'default', 'default.jpg', 'default image');
 
 COMMIT;
 

@@ -16,7 +16,7 @@ if(mysqli_num_rows($usercheck) > 0){
     $_SESSION["id"] 				= $row_uzivatel["id"];
     $_SESSION["opravneni"]               = $row_uzivatel["opravneni"];
     $id = $_SESSION["id"];
-    header("Location: ../index.php?pages=profile?id=$id");
+    header("Location: ../index.php?pages=profile&id=$id");
 }
 else{
     //uzivatel neexistuje

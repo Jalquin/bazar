@@ -1,10 +1,12 @@
-
+<?php
+$id = $_GET["id"];
+$uzivatel = UzivatelFactory::createUzivatel($id,$conn);
+$inzeraty = $uzivatel->getInzeraty();
+?>
 <!-- extra CSS pro datatables - nutné někam implementovat do headu -->
     <link href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css">
     <link href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css" rel="stylesheet"
           type="text/css">
-
-
 
 <div class="container">
     <div class="row">
@@ -36,10 +38,16 @@
         </thead>
         <tbody>
         <tr>
+            <?php
+            //za každý inzerát
+            foreach ($inzeraty as $inzerat){
+                //za každé zboží v inzerátu
+                foreach ($inzerat->getZbozi() as $zbozivinzeratu){
+            ?>
             <td></td>
-            <td>Myš Razer</td>
-            <td>12.12.2022</td>
-            <td>Aktivní</td>
+            <td><?= $zbozivinzeratu->getNazev();?></td>
+            <td><?= $inzerat->getDatumVytvoreni();?></td>
+            <td><?= $inzerat->getStatus();?></td>
             <td>
                 <div aria-label="Akce inzerátu <<name>>" class="btn-group mb-2 mb-lg-0" role="group">
                     <a class="btn btn-warning" href="editListing.php"><i class="bi bi-pencil-square"></i> Upravit
@@ -64,107 +72,12 @@
                         type="button"><i class="bi bi-trash3"></i> Odstranit inzerát
                 </button>
             </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>Myš Razer</td>
-            <td>12.12.2022</td>
-            <td>Aktivní</td>
-            <td>
-                <div aria-label="Akce inzerátu <<name>>" class="btn-group mb-2 mb-lg-0" role="group">
-                    <a class="btn btn-warning" href="editListing.php"><i class="bi bi-pencil-square"></i> Upravit
-                        inzerát
-                    </a>
-
-                    <div class="btn-group" role="group">
-                        <button aria-expanded="false" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-                                type="button">
-                            <i class="bi bi-flag"></i> Změnit stav
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Aktivní</a></li>
-                            <li><a class="dropdown-item" href="#">Prodáno</a></li>
-                            <li><a class="dropdown-item" href="#">Rezervované</a></li>
-                            <li><a class="dropdown-item" href="#">Skryté</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <button class="btn btn-danger" data-bs-target="#exampleModal" data-bs-toggle="modal"
-                        data-bs-whatever="Inzerát 2"
-                        type="button"><i class="bi bi-trash3"></i> Odstranit inzerát
-                </button>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>Myš Razer</td>
-            <td>12.12.2022</td>
-            <td>Aktivní</td>
-            <td>
-                <div aria-label="Akce inzerátu <<name>>" class="btn-group mb-2 mb-lg-0" role="group">
-                    <a class="btn btn-warning" href="editListing.php"><i class="bi bi-pencil-square"></i> Upravit
-                        inzerát
-                    </a>
-
-                    <div class="btn-group" role="group">
-                        <button aria-expanded="false" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-                                type="button">
-                            <i class="bi bi-flag"></i> Změnit stav
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Aktivní</a></li>
-                            <li><a class="dropdown-item" href="#">Prodáno</a></li>
-                            <li><a class="dropdown-item" href="#">Rezervované</a></li>
-                            <li><a class="dropdown-item" href="#">Skryté</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <button class="btn btn-danger" data-bs-target="#exampleModal" data-bs-toggle="modal"
-                        data-bs-whatever="Inzerát 3"
-                        type="button"><i class="bi bi-trash3"></i> Odstranit inzerát
-                </button>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>Myš Razer</td>
-            <td>12.12.2022</td>
-            <td>Aktivní</td>
-            <td>
-                <div aria-label="Akce inzerátu <<name>>" class="btn-group mb-2 mb-lg-0" role="group">
-                    <a class="btn btn-warning" href="editListing.php"><i class="bi bi-pencil-square"></i> Upravit
-                        inzerát
-                    </a>
-
-                    <div class="btn-group" role="group">
-                        <button aria-expanded="false" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-                                type="button">
-                            <i class="bi bi-flag"></i> Změnit stav
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Aktivní</a></li>
-                            <li><a class="dropdown-item" href="#">Prodáno</a></li>
-                            <li><a class="dropdown-item" href="#">Rezervované</a></li>
-                            <li><a class="dropdown-item" href="#">Skryté</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <button class="btn btn-danger" data-bs-target="#exampleModal" data-bs-toggle="modal"
-                        data-bs-whatever="Inzerát 4"
-                        type="button"><i class="bi bi-trash3"></i> Odstranit inzerát
-                </button>
-            </td>
+            <?php
+                }
+            }
+            ?>
         </tr>
         </tbody>
-        <tfoot>
-        <tr>
-            <th></th>
-            <th>Název</th>
-            <th>Datum</th>
-            <th>Stav</th>
-            <th>Akce</th>
-        </tr>
-        </tfoot>
     </table>
 </div>
 <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal" tabindex="-1">
