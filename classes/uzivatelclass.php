@@ -67,7 +67,7 @@ class UzivatelFactory
         /*$getinzeraty = mysqli_query($conn,"SELECT * FROM Inzerat JOIN Uzivatel_vytvoril_inzerat ON Inzerat.id = Uzivatel_vytvoril_inzerat.Inzerat_id
         JOIN Zbozi ON Inzerat.Zbozi_id = Zbozi.id JOIN Status ON Status.id = Inzerat.inzerat_status_id WHERE Uzivatel_vytvoril_inzerat.Uzivatel_id = $id");*/
         $getinzeraty = mysqli_query($conn,"SELECT * FROM Inzerat JOIN Uzivatel_vytvoril_inzerat ON Inzerat.id = Uzivatel_vytvoril_inzerat.Inzerat_id
-        JOIN Status ON Status.id = Inzerat.inzerat_status_id WHERE Uzivatel_vytvoril_inzerat.Uzivatel_id = $id");
+        WHERE Uzivatel_vytvoril_inzerat.Uzivatel_id = $id");
         foreach ($getinzeraty as $getinzerat){
             $inzeratid = $getinzerat["id"];
             $inzeratkratkypopis = $getinzerat["kratkypopis"];
@@ -75,7 +75,7 @@ class UzivatelFactory
             $inzeratcena = $getinzerat["cena"];
             $inzerattel = $getinzerat["tel"];
             $inzeratlokace = $getinzerat["lokace"];
-            $inzeratstatus = $getinzerat["status"];
+            $inzeratstatus = $getinzerat["inzerat_status_id"];
             $inzeratdatumvytvoreni = $getinzerat["datum_zalozeni"];
 
             $inzerat = new Inzerat($inzeratid,$inzeratkratkypopis,$interatdlouhypopis,$inzeratcena,$inzerattel,$inzeratlokace,$inzeratstatus,$inzeratdatumvytvoreni);

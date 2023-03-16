@@ -24,7 +24,7 @@ $inzeraty = $uzivatel->getInzeraty();
 
 <div class="container">
     <h1>Moje Inzeráty</h1>
-    <a class="btn btn-success my-2" href="addListing.php"><i class="bi bi-bookmark-plus"></i>
+    <a class="btn btn-success my-2" href="index.php?pages=addListing"><i class="bi bi-bookmark-plus"></i>
         Přidat inzerát</a>
     <table class="table table-striped" id="example" style="width:100%">
         <thead>
@@ -37,20 +37,21 @@ $inzeraty = $uzivatel->getInzeraty();
         </tr>
         </thead>
         <tbody>
-        <tr>
+
             <?php
             //za každý inzerát
             foreach ($inzeraty as $inzerat){
                 //za každé zboží v inzerátu
                 foreach ($inzerat->getZbozi() as $zbozivinzeratu){
             ?>
+            <tr>
             <td></td>
             <td><?= $zbozivinzeratu->getNazev();?></td>
             <td><?= $inzerat->getDatumVytvoreni();?></td>
             <td><?= $inzerat->getStatus();?></td>
             <td>
                 <div aria-label="Akce inzerátu <<name>>" class="btn-group mb-2 mb-lg-0" role="group">
-                    <a class="btn btn-warning" href="editListing.php"><i class="bi bi-pencil-square"></i> Upravit
+                    <a class="btn btn-warning" href="index.php?pages=editListing&id=<?= $inzerat->getId(); ?>" ><i class="bi bi-pencil-square"></i> Upravit
                         inzerát
                     </a>
 
@@ -67,16 +68,17 @@ $inzeraty = $uzivatel->getInzeraty();
                         </ul>
                     </div>
                 </div>
-                <button class="btn btn-danger" data-bs-target="#exampleModal" data-bs-toggle="modal"
+                <a href="scripts/deleteinzerat.php?id=<?= $inzerat->getId(); ?>"  class="btn btn-danger" data-bs-target="#exampleModal" data-bs-toggle="modal"
                         data-bs-whatever="Inzerát 1"
                         type="button"><i class="bi bi-trash3"></i> Odstranit inzerát
-                </button>
+                </a>
             </td>
+            </tr>
             <?php
                 }
             }
             ?>
-        </tr>
+
         </tbody>
     </table>
 </div>
@@ -89,7 +91,7 @@ $inzeraty = $uzivatel->getInzeraty();
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Ne</button>
-                <a class="btn btn-danger" href="myListings.html" type="button">Ano</a>
+                <a class="btn btn-danger" href="scripts/deleteinzerat.php?id=<?= $inzerat->getId(); ?>" type="button">Ano</a>
             </div>
         </div>
     </div>

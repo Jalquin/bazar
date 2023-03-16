@@ -46,9 +46,9 @@ CREATE TABLE IF NOT EXISTS `bazos`.`Inzerat` (
   `lokace` VARCHAR(45) NOT NULL,
   `inzerat_status_id` INT NOT NULL DEFAULT 1,
   `Zbozi_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `inzerat_status_id`, `Zbozi_id`),
-  INDEX `fk_Inzerat_inzerat_status_idx` (`inzerat_status_id` ASC) ,
-  INDEX `fk_Inzerat_Zbozi1_idx` (`Zbozi_id` ASC) ,
+  PRIMARY KEY (`id`),
+  INDEX `fk_Inzerat_inzerat_status_idx` (`inzerat_status_id` ASC),
+  INDEX `fk_Inzerat_Zbozi1_idx` (`Zbozi_id` ASC),
   CONSTRAINT `fk_Inzerat_inzerat_status`
     FOREIGN KEY (`inzerat_status_id`)
     REFERENCES `bazos`.`Status` (`id`)
