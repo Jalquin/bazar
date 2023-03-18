@@ -47,8 +47,8 @@ CREATE TABLE IF NOT EXISTS `bazos`.`Inzerat` (
   `inzerat_status_id` INT NOT NULL DEFAULT 1,
   `Zbozi_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_Inzerat_inzerat_status_idx` (`inzerat_status_id` ASC),
-  INDEX `fk_Inzerat_Zbozi1_idx` (`Zbozi_id` ASC),
+  INDEX `fk_Inzerat_inzerat_status_idx` (`inzerat_status_id` ASC) ,
+  INDEX `fk_Inzerat_Zbozi1_idx` (`Zbozi_id` ASC) ,
   CONSTRAINT `fk_Inzerat_inzerat_status`
     FOREIGN KEY (`inzerat_status_id`)
     REFERENCES `bazos`.`Status` (`id`)
@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `bazos`.`Uzivatel_vytvoril_inzerat` (
   `Uzivatel_id` INT NOT NULL,
   `Inzerat_id` INT NOT NULL,
   `datum_zalozeni` DATE NOT NULL,
-  PRIMARY KEY (`Uzivatel_id`, `Inzerat_id`),
+  PRIMARY KEY (`Uzivatel_id`),
   INDEX `fk_Uzivatel_has_Inzerat_Inzerat1_idx` (`Inzerat_id` ASC) ,
   INDEX `fk_Uzivatel_has_Inzerat_Uzivatel1_idx` (`Uzivatel_id` ASC) ,
   CONSTRAINT `fk_Uzivatel_has_Inzerat_Uzivatel1`
@@ -195,29 +195,35 @@ CREATE TABLE IF NOT EXISTS `bazos`.`Zbozi_has_Obrazky` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `bazos`.`Inzerat_ma_zpravu`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bazos`.`Inzerat_ma_zpravu` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `zprava` VARCHAR(45) NOT NULL,
+  `Inzerat_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_Inzerat_ma_zpravu_Inzerat1_idx` (`Inzerat_id` ASC) ,
+  CONSTRAINT `fk_Inzerat_ma_zpravu_Inzerat1`
+    FOREIGN KEY (`Inzerat_id`)
+    REFERENCES `bazos`.`Inzerat` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+USE `bazos`;
+
+DELIMITER $$
+USE `bazos`$$
+CREATE DEFINER = CURRENT_USER TRIGGER `bazos`.`Inzerat_BEFORE_DELETE` BEFORE DELETE ON `Inzerat` FOR EACH ROW
+BEGIN
+
+END
+$$
+
+
+DELIMITER ;
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
--- -----------------------------------------------------
--- Data for table `bazos`.`Status`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `bazos`;
-INSERT INTO `bazos`.`Status` (`id`, `status`) VALUES (1, 'aktivni');
-INSERT INTO `bazos`.`Status` (`id`, `status`) VALUES (2, 'rezervovany');
-INSERT INTO `bazos`.`Status` (`id`, `status`) VALUES (3, 'prodany');
-INSERT INTO `bazos`.`Status` (`id`, `status`) VALUES (4, 'skryty');
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `bazos`.`Obrazky`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `bazos`;
-INSERT INTO `bazos`.`Obrazky` (`id`, `nazev`, `src`, `alt`) VALUES (1, 'default', 'default.jpg', 'default image');
-
-COMMIT;
-

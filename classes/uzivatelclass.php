@@ -77,11 +77,12 @@ class UzivatelFactory
             $inzeratlokace = $getinzerat["lokace"];
             $inzeratstatus = $getinzerat["inzerat_status_id"];
             $inzeratdatumvytvoreni = $getinzerat["datum_zalozeni"];
+            $inzeratzboziid = $getinzerat["Zbozi_id"];
 
             $inzerat = new Inzerat($inzeratid,$inzeratkratkypopis,$interatdlouhypopis,$inzeratcena,$inzerattel,$inzeratlokace,$inzeratstatus,$inzeratdatumvytvoreni);
 
             //do inzeratu musim pridat zbozi
-            $zbozidoinzeratus = mysqli_query($conn,"SELECT * FROM Zbozi WHERE id = $inzeratid LIMIT 1");
+            $zbozidoinzeratus = mysqli_query($conn,"SELECT * FROM Zbozi WHERE id = $inzeratzboziid LIMIT 1");
             foreach ($zbozidoinzeratus as $zbozidoinzeratu){
                 $zboziid = $zbozidoinzeratu["id"];
                 $zbozinazev = $zbozidoinzeratu["nazev"];

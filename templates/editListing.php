@@ -30,7 +30,6 @@ foreach ($inzeraty as $inzerat) {
     }
 }
 
-echo $zboziid.$inzeratid;
 ?>
 
 <div class="container">

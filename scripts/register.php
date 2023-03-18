@@ -17,13 +17,13 @@ if(mysqli_num_rows($checkifregistered) > 0){
 
 }
 else{
-
     //ZDE MŮŽEME PŘÍPADNĚ ROZŠIŘOVAT DALŠÍ OŠETŘENÍ
-
     $dotaz = "INSERT INTO Uzivatel (jmeno,prijmeni,email,heslo,opravneni,obrazky_id) VALUES (?,?,?,?,0,1)";
     $stmt = $conn->prepare($dotaz);
     $stmt->bind_param("ssss", $name, $surname, $email, $password);
     $stmt->execute();
     $id=$stmt->insert_id;
+
+
 }
 ?>

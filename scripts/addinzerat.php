@@ -46,6 +46,6 @@ $stmt = $conn->prepare($pridejvazbu);
 $stmt->bind_param("ss", $uzivatelid, $id);
 $stmt->execute();
 
-header("Location: ../index.php?pages=addListing");
+header("Location: ../index.php?pages=myListings&id=$uzivatelid");
 
 ?>

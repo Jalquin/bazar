@@ -1,4 +1,40 @@
+<?php
 
+$idprodukut = $_GET["id"];
+$inzerat = InzeratFactory::createInzerat($idprodukut,$conn);
+
+$nazev = $fotografie = $cena = $tel = $lokace = $dlouhypopis = $kratkypopis = $status = $kategorie = $zboziid = "";
+$cena = $inzerat->getCena();
+$tel = $inzerat->getTel();
+$lokace = $inzerat->getLokace();
+$dlouhypopis = $inzerat->getDlouhyPopis();
+$kratkypopis = $inzerat->getKratkyPopis();
+$status = $inzerat->getStatus();
+
+foreach ($inzerat->getZbozi() as $zbozi){
+    $nazev = $zbozi->getNazev();
+    $zboziid = $zbozi->getId();
+
+    foreach ($zbozi->getKategorie() as $kategorie){
+        $kategorie = $kategorie->getNazev();
+    }
+}
+
+//kdo je inzerant?
+$kdojeinzerant = "SELECT * FROM uzivatel_vytvoril_inzerat WHERE Inzerat_id = ?";
+$stmt = $conn->prepare($kdojeinzerant);
+$stmt->bind_param("i", $idprodukut);
+$stmt->execute();
+$result = $stmt->get_result();
+$inzerant = $result->fetch_assoc();
+
+$inzerantid = $inzerant["Uzivatel_id"];
+$inzerant = UzivatelFactory::createUzivatel($inzerantid,$conn);
+$jmenoinzeranta = $inzerant->getJmeno()." ".$inzerant->getPrijmeni();
+$email = $inzerant->getEmail();
+
+
+?>
 <link href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" rel="stylesheet" type="text/css"/>
 
 <div class="container">
@@ -48,42 +84,41 @@
         <div class="col-lg-8 bg-light bg-gradient rounded">
             <div class="row">
                 <div class="col">
-                    <h1 class="card-title">Stolní počítač s mechanickou klávesnicí</h1>
+                    <h1 class="card-title"><?= $nazev;?></h1>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <p>Stolní počítač s grafickou kartou Gigabyte RTX 3090, procesorem AMD 5900X a mechanickou
-                        klávesnicí Corsair K70 RGB TKL.</p>
+                    <p><?= $kratkypopis; ?></p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-6">
                     <div class="row">
                         <div class="col">
-                            <a href="profile.php"><p><i class="bi bi-person-fill"></i> Jan Novák</p></a>
+                            <a href="profile.php"><p><i class="bi bi-person-fill"></i> <?= $jmenoinzeranta;?></p></a>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <a href="tel:+420777777777"><p><i class="bi bi-telephone"></i> +420 777 777 777</p></a>
+                            <a href="tel:+420777777777"><p><i class="bi bi-telephone"></i> <?= $tel; ?></p></a>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <p><i class="bi bi-geo-alt"></i> Praha 1</p>
+                            <p><i class="bi bi-geo-alt"></i> <?= $lokace;?> </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-6 text-end">
                     <div class="row">
                         <div class="col">
-                            <h2>106 420,- Kč</h2>
+                            <h2><?= $cena.",- Kč";?></h2>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <a class="btn btn-primary" href="mailto:mail@mail.com"><i
+                            <a class="btn btn-primary" href="mailto:<?= $email;?>"><i
                                     class="bi bi-envelope-at-fill"></i> Kontaktovat E-mailem</a>
                         </div>
                     </div>
@@ -105,11 +140,7 @@
     <div class="row">
         <div class="col">
             <h3>Detailní popis</h3>
-            <p>Výrobek byl sestaven profesionálem. Počítač vhodný pro náročnou práci, hraní her, editování videí.
-                Grafická karta Gigabyte RTX 3090 spolu s procesorem AMD 5900X Vám zaručí rychlou responzivitu co se her
-                týče a vysoký výkon při renderování v Blenderu.</p>
-            <p>Zboži k Vám dorazí již sestavené, jediné co Vám stačí, je do počítače připojit monitor, myš a vše zapojit
-                do zásuvky :).</p>
+            <p><?=$dlouhypopis;?></p>
         </div>
     </div>
 </div>

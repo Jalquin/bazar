@@ -18,7 +18,7 @@ $selectinzerat = mysqli_query($conn,"SELECT * FROM `inzerat` WHERE id = $inzerat
 foreach ($selectinzerat as $inzerat){
     $zboziid = $inzerat["Zbozi_id"];
 }
-
+$deletevazbu = mysqli_query($conn,"DELETE FROM uzivatel_vytvoril_inzerat WHERE `uzivatel_vytvoril_inzerat`.`Uzivatel_id` = $uzivatelid AND uzivatel_vytvoril_inzerat.Inzerat_id = $inzeratid");
 $deleteinzerat = mysqli_query($conn,"DELETE FROM inzerat WHERE id = $inzeratid");
 $deletezbozi = mysqli_query($conn,"DELETE FROM zbozi WHERE id = $zboziid");
 

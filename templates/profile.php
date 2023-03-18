@@ -1,6 +1,7 @@
 <?php
 $id = $_GET["id"];
 $uzivatel = UzivatelFactory::createUzivatel($id,$conn);
+$error = "";
 ?>
 
 <div class="container">
@@ -21,7 +22,7 @@ $uzivatel = UzivatelFactory::createUzivatel($id,$conn);
         <div class="col-lg-3 border-right mb-3">
             <div class="d-flex flex-column align-items-center text-center">
                 <img alt="Profilový obrázek" class="rounded-circle"
-                     src="<?= "images/".$uzivatel->getObrazek();?>"
+                     src="<?= $uzivatel->getObrazek();?>"
                      width="150px">
                 <span class="font-weight-bold"><?= $uzivatel->getJmeno()." ".$uzivatel->getPrijmeni();?></span>
                 <span class="text-black-50"><?= $uzivatel->getEmail();?></span>
