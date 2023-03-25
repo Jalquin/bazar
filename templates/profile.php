@@ -22,7 +22,7 @@ $error = "";
         <div class="col-lg-3 border-right mb-3">
             <div class="d-flex flex-column align-items-center text-center">
                 <img alt="Profilový obrázek" class="rounded-circle"
-                     src="<?= $uzivatel->getObrazek();?>"
+                     src="<?= "images/".$uzivatel->getObrazek();?>"
                      width="150px">
                 <span class="font-weight-bold"><?= $uzivatel->getJmeno()." ".$uzivatel->getPrijmeni();?></span>
                 <span class="text-black-50"><?= $uzivatel->getEmail();?></span>
