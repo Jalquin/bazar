@@ -20,7 +20,7 @@ $uzivatel = UzivatelFactory::createUzivatel($id,$conn);
 
 <div class="container">
     <h1>Přidat inzerát</h1>
-    <form class="row" action="scripts/addinzerat.php" method="POST">
+    <form class="row" action="scripts/addinzerat.php" method="POST" enctype="multipart/form-data">
 
         <div class="col-12 col-lg-6">
             <div class="form-floating mb-3">
@@ -29,7 +29,7 @@ $uzivatel = UzivatelFactory::createUzivatel($id,$conn);
             </div>
             <div class="mb-3">
                 <label class="form-label" for="photos">Fotografie</label>
-                <input class="form-control" name="fotografie" id="photos" multiple type="file">
+                <input class="form-control" type="file" name="fileToUpload" id="fileToUpload">
             </div>
             <div class="form-floating mb-3">
                     <textarea class="form-control" name="kratkypopis" id="shortDesc" placeholder="Krátký popis..."

@@ -48,7 +48,7 @@ foreach ($inzeraty as $inzerat) {
 
 <div class="container">
     <h1>Upravit inzerát <?= $nazev;?></h1>
-    <form class="row" action="scripts/aktualizujinzerat.php" method="POST">
+    <form class="row" action="scripts/aktualizujinzerat.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="inzeratid" type="number" value="<?=$inzeratid;?>">
         <input type="hidden" name="zboziid" type="number" value="<?=$zboziid;?>">
         <div class="col-12 col-lg-6">
@@ -58,7 +58,7 @@ foreach ($inzeraty as $inzerat) {
             </div>
             <div class="mb-3">
                 <label class="form-label" for="photos">Fotografie</label>
-                <input class="form-control" name="fotografie" id="photos" multiple type="file">
+                <input class="form-control" type="file" name="fileToUpload" id="fileToUpload">
             </div>
             <div class="form-floating mb-3">
                     <textarea class="form-control" name="kratkypopis" id="shortDesc" placeholder="Krátký popis..."
