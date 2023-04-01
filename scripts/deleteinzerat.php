@@ -34,12 +34,8 @@ foreach ($getnazevobrazku as $obrazek){
     $deleteobrazek = mysqli_query($conn,"DELETE FROM obrazky WHERE nazev = '$nazevzbozi'");
     $deletekonekci = mysqli_query($conn,"DELETE FROM zbozi_ma_obrazky WHERE Zbozi_id = '$zboziid'");
 }
-
 //zbozi ma kategorii
-
 $deletezbozimakategorii = mysqli_query($conn,"DELETE FROM zbozi_ma_kategorii WHERE Zbozi_id = '$zboziid'");
-
-
 
 header("Location: ../index.php?pages=myListings&id=$uzivatelid");
 

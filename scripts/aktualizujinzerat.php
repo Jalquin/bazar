@@ -52,6 +52,25 @@ if (isset($_FILES['images'])) {
             // Zkontrolujte, zda soubor již existuje
             if (file_exists($target_file)) {
                 echo "Soubor $name již byl nahrán.<br>";
+
+                /*VELMI TESTOVACI USE CASE*/
+                //getidobrazku
+                $getidobrazku = "SELECT * FROM obrazky WHERE src = '$name' LIMIT 1";
+                $result = $conn->query($getidobrazku);
+                $last_id = 0;
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        $last_id = $row["id"];
+                    }
+                }
+                $vytvorvazbu = "INSERT INTO `zbozi_ma_obrazky` (`Zbozi_id`, `Obrazky_id`) VALUES ('$zboziid', '$last_id');";
+                if ($conn->query($vytvorvazbu) === TRUE) {
+                    echo "Vazba byla úspěšně vytvořena v databázi.<br>";
+                } else {
+                    echo "Chyba při tvoření vazby v databázi: " . $conn->error . "<br>";
+                }
+                /*VELMI TESTOVACI USE CASE*/
+
             } else {
                 move_uploaded_file($tmp_name, $target_file);
                 echo "Soubor $name byl úspěšně nahrán.<br>";

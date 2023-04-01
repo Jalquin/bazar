@@ -80,14 +80,20 @@ $getinzeraty = mysqli_query($conn,"SELECT * FROM inzerat JOIN zbozi ON inzerat.i
                         $inzerat = InzeratFactory::createInzerat($inzerat["id"], $conn);
 
                         foreach ($inzerat->getZbozi() as $zbozi):
-
+                        $zboziid = $zbozi->getId();
+                            $selectallpictures = mysqli_query($conn,"SELECT * FROM zbozi_ma_obrazky JOIN
+    obrazky ON obrazky.id = zbozi_ma_obrazky.Obrazky_id WHERE zbozi_ma_obrazky.Zbozi_id = $zboziid LIMIT 1");
+                            $zboziobrazek = "images/default.jpg";
+                            foreach ($selectallpictures as $zbozipicture){
+                                $zboziobrazek = "images/inzeraty/".$zbozipicture["src"];
+                            }
                         ?>
 
                             <div class="col">
                                 <a class="text-decoration-none text-body" href="index.php?pages=product&id=<?=$inzerat->getId();?>">
                                     <div class="card h-100">
                                         <img alt="" class="card-img-top"
-                                             src="https://cdn.myshoptet.com/usr/www.dashop.cz/user/shop/big/5270-1_1500x1000-4.png?602513f7">
+                                             src="<?=$zboziobrazek;?>">
                                         <div class="card-body">
                                             <h3 class="card-title"><?=$zbozi->getNazev();?></h3>
                                             <p class="card-text"><?=$inzerat->getKratkyPopis();?></p>

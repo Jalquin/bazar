@@ -65,12 +65,21 @@ $result = $stmt->get_result();
                         for ($row_no = $result->num_rows - 1; $row_no >= 0; $row_no--) {
                             $result->data_seek($row_no);
                             $row = $result->fetch_assoc();
+
+                            $zboziid = $row["Zbozi_id"];
+                            $selectallpictures = mysqli_query($conn,"SELECT * FROM zbozi_ma_obrazky JOIN
+    obrazky ON obrazky.id = zbozi_ma_obrazky.Obrazky_id WHERE zbozi_ma_obrazky.Zbozi_id = $zboziid LIMIT 1");
+                            $zboziobrazek = "images/default.jpg";
+                            foreach ($selectallpictures as $zbozipicture){
+                                $zboziobrazek = "images/inzeraty/".$zbozipicture["src"];
+                            }
+
                             ?>
                             <div class="col">
 
                                 <div class="card h-100">
                                     <img alt="<?= $row["nazev"];?>" class="card-img-top"
-                                         src="images/default.jpg">
+                                         src="<?=$zboziobrazek;?>">
                                     <div class="card-body">
                                         <h3 class="card-title"><?=$row["nazev"];?></h3>
                                         <p class="card-text"><?=$row["kratkypopis"];?></p>

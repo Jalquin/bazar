@@ -50,6 +50,15 @@ $email = $inzerant->getEmail();
         </div>
     </div>
 </div>
+<?php
+$selectfirstpicture = mysqli_query($conn,"SELECT * FROM zbozi_ma_obrazky JOIN
+            obrazky ON obrazky.id = zbozi_ma_obrazky.Obrazky_id WHERE zbozi_ma_obrazky.Zbozi_id = $zboziid LIMIT 1");
+$zboziprvniobrazek = "images/default.jpg";
+foreach ($selectfirstpicture as $zbozifirstpicture){
+    $zboziprvniobrazek = "images/inzeraty/".$zbozifirstpicture["src"];
+}
+
+?>
 
 <div class="container">
     <div class="row mb-1">
@@ -57,27 +66,25 @@ $email = $inzerant->getEmail();
             <div class="row">
                 <img alt="placeholder"
                      class="img-fluid"
-                     src="https://www.lifewire.com/thmb/hFi8NtoAap7q62oWhaEDnbwnx3Y=/1000x1000/filters:no_upscale():max_bytes(150000):strip_icc()/Gygabyte_GEFORCE_RTX_HeroHoriz-db8d12900c4449e9b8aab6999b42372c.jpg">
+                     src="<?=$zboziprvniobrazek;?>">
             </div>
             <div class="row">
                 <div class="multiple-items">
+                <?php
+                $selectallpictures = mysqli_query($conn,"SELECT * FROM zbozi_ma_obrazky JOIN
+            obrazky ON obrazky.id = zbozi_ma_obrazky.Obrazky_id WHERE zbozi_ma_obrazky.Zbozi_id = $zboziid");
+                $zboziobrazek = "images/default.jpg";
+
+                $skipinteger = 0;
+                foreach($selectallpictures as $zbozipicture){
+                    $skipinteger++;
+                    if($skipinteger === 1){} else{
+                        $zboziobrazek = "images/inzeraty/" . $zbozipicture["src"];
+                    ?>
                     <img alt="placeholder"
                          class="img-fluid"
-                         src="https://interlink-static1.tsbohemia.cz/gigabyte-geforce-rtx-3090-eagle-oc-24g_ig366077.jpg">
-                    <img alt="placeholder"
-                         class="img-fluid"
-                         src="https://im9.cz/iR/importprodukt-orig/3b1/3b1386b24652ccd48762e4adf9d6cfb4--mmf250x250.jpg">
-                    <img alt="placeholder" class="img-fluid"
-                         src="https://m.media-amazon.com/images/I/41VX05Qy69L._AC_SS250_.jpg">
-                    <img alt="placeholder"
-                         class="img-fluid"
-                         src="https://www.lifewire.com/thmb/mN0eLvY1QswgcrakEY1N_CBmwWI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Gygabyte_GEFORCE_RTX_03-efdbffee4fd8432e9bec6bbbb704b7b0.jpg">
-                    <img alt="placeholder"
-                         class="img-fluid"
-                         src="https://www.lifewire.com/thmb/bMdBzp-Kus7KF3L051dSrV5EdbQ=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Gygabyte_GEFORCE_RTX_04-c215a663f64e420293eec8c248103a70.jpg">
-                    <img alt="placeholder"
-                         class="img-fluid"
-                         src="https://www.lifewire.com/thmb/2GF1PqpqRXgPInQ9FFbQQT9WyDA=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Gygabyte_GEFORCE_RTX_05-9982bf92d93746189e3b4fe68526bea0.jpg">
+                         src="<?=$zboziobrazek;?>">
+                <?php } } ?>
                 </div>
             </div>
         </div>
