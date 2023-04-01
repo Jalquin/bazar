@@ -29,7 +29,7 @@ $uzivatel = UzivatelFactory::createUzivatel($id,$conn);
             </div>
             <div class="mb-3">
                 <label class="form-label" for="photos">Fotografie</label>
-                <input class="form-control" type="file" name="fileToUpload" id="fileToUpload">
+                <input  class="form-control" type="file" name="images[]" multiple>
             </div>
             <div class="form-floating mb-3">
                     <textarea class="form-control" name="kratkypopis" id="shortDesc" placeholder="Krátký popis..."
@@ -80,11 +80,11 @@ $uzivatel = UzivatelFactory::createUzivatel($id,$conn);
             <div class="form-floating mb-3">
                 <select aria-label="Výběr kategorií inzerátu" name="kategorie" class="form-select" id="category" multiple
                         style="height: 150px">
-                    <option value="0">Počítače</option>
-                    <option value="1">Notebooky</option>
-                    <option value="2">Procesory</option>
-                    <option value="3">Grafické karty</option>
-                    <option value="4">Příslušenství</option>
+                    <option value="1">Počítače</option>
+                    <option value="2">Notebooky</option>
+                    <option value="3">Procesory</option>
+                    <option value="4">Grafické karty</option>
+                    <option value="5">Příslušenství</option>
                 </select>
                 <label for="status"><i class="bi bi-bookmark-plus"></i> Kategorie</label>
             </div>

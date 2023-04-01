@@ -86,7 +86,7 @@ $result = $stmt->get_result();
                                                     Koupit</a>
                                             </div>
                                             <div class="col">
-                                                <a class="btn btn-primary my-2" href="index.php?pages=product&id=<?=$row["id"];?>"><i
+                                                <a class="btn btn-primary my-2" href="index.php?pages=product&id=<?=$row["Zbozi_id"];?>"><i
                                                             class="bi bi-body-text"></i> Detail</a>
                                             </div>
                                         </div>

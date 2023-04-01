@@ -25,15 +25,21 @@ $deletevazbu = mysqli_query($conn,"DELETE FROM uzivatel_vytvoril_inzerat WHERE `
 $deleteinzerat = mysqli_query($conn,"DELETE FROM inzerat WHERE id = $inzeratid");
 $deletezbozi = mysqli_query($conn,"DELETE FROM zbozi WHERE id = $zboziid");
 
-$getnazevobrazku = mysqli_query($conn,"SELECT * FROM obrazky WHERE nazev = '$nazevzbozi' LIMIT 1");
+$getnazevobrazku = mysqli_query($conn,"SELECT * FROM obrazky WHERE nazev = '$nazevzbozi'");
 foreach ($getnazevobrazku as $obrazek){
     $obrazeksrc = "../images/inzeraty/".$obrazek["src"];
 
-    echo $obrazeksrc;
     unlink($obrazeksrc);
 
     $deleteobrazek = mysqli_query($conn,"DELETE FROM obrazky WHERE nazev = '$nazevzbozi'");
+    $deletekonekci = mysqli_query($conn,"DELETE FROM zbozi_ma_obrazky WHERE Zbozi_id = '$zboziid'");
 }
+
+//zbozi ma kategorii
+
+$deletezbozimakategorii = mysqli_query($conn,"DELETE FROM zbozi_ma_kategorii WHERE Zbozi_id = '$zboziid'");
+
+
 
 header("Location: ../index.php?pages=myListings&id=$uzivatelid");
 

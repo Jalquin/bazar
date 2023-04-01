@@ -25,12 +25,6 @@
                         </li>
                         <li class="btn-group d-table d-lg-flex nav-item dropdown">
                             <a class="nav-link d-inline" href="index.php?pages=listings"><i class="bi bi-pc-display"></i> Inzeráty</a>
-                            <a aria-expanded="false"
-                               class="nav-link d-inline dropdown-toggle dropdown-toggle-split ms-2 ms-lg-0 "
-                               data-bs-toggle="dropdown"
-                               role="button">
-                                <span class="visually-hidden">Toggle Dropdown</span>
-                            </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="index.php?pages=categories"><i class="bi bi-bookmark"></i>
                                     Kategorie</a></li>

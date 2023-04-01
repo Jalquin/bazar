@@ -28,6 +28,7 @@ class Zbozi
         return $this->kategorie;
     }
 
+
 }
 
 ?>

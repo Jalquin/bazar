@@ -93,7 +93,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `bazos`.`Uzivatel_vytvoril_inzerat` (
   `Uzivatel_id` INT NOT NULL,
   `Inzerat_id` INT NOT NULL,
-  `datum_zalozeni` DATE NOT NULL)
+  `datum_zalozeni` DATE NOT NULL,
+  PRIMARY KEY (`Uzivatel_id`, `Inzerat_id`))
 ENGINE = InnoDB;
 
 
@@ -112,7 +113,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bazos`.`Zbozi_ma_kategorii` (
   `Zbozi_id` INT NOT NULL,
-  `Kategorie_id` INT NOT NULL)
+  `Kategorie_id` INT NOT NULL,
+  PRIMARY KEY (`Zbozi_id`, `Kategorie_id`))
 ENGINE = InnoDB;
 
 
@@ -177,7 +179,12 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bazos`;
-INSERT INTO `bazos`.`Obrazky` (`id`, `nazev`, `src`, `alt`) VALUES (1, 'default', 'default.jng', 'default image');
+INSERT INTO `bazos`.`Obrazky` (`id`, `nazev`, `src`, `alt`) VALUES (1, 'default', 'default.jpg', 'default image');
+INSERT INTO `bazos`.`Obrazky` (`id`, `nazev`, `src`, `alt`) VALUES (2, 'Počítače', 'pocitace.webp', 'Počítače');
+INSERT INTO `bazos`.`Obrazky` (`id`, `nazev`, `src`, `alt`) VALUES (3, 'Notebooky', 'notebooky.jpg', 'Notebooky');
+INSERT INTO `bazos`.`Obrazky` (`id`, `nazev`, `src`, `alt`) VALUES (4, 'Procesory', 'procesory.jpg', 'Procesory');
+INSERT INTO `bazos`.`Obrazky` (`id`, `nazev`, `src`, `alt`) VALUES (5, 'Grafické Karty', 'grafickekarty.jpg', 'Grafické Karty');
+INSERT INTO `bazos`.`Obrazky` (`id`, `nazev`, `src`, `alt`) VALUES (6, 'Příslušenství', 'prislusenstvi.webp', 'Příslušenství');
 
 COMMIT;
 
@@ -192,6 +199,20 @@ INSERT INTO `bazos`.`Kategorie` (`id`, `nazev`) VALUES (2, 'Notebooky');
 INSERT INTO `bazos`.`Kategorie` (`id`, `nazev`) VALUES (3, 'Procesory');
 INSERT INTO `bazos`.`Kategorie` (`id`, `nazev`) VALUES (4, 'Grafické karty');
 INSERT INTO `bazos`.`Kategorie` (`id`, `nazev`) VALUES (5, 'Příslušenství');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `bazos`.`Kategorie_ma_Obrazky`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `bazos`;
+INSERT INTO `bazos`.`Kategorie_ma_Obrazky` (`Kategorie_id`, `Obrazky_id`) VALUES (1, 2);
+INSERT INTO `bazos`.`Kategorie_ma_Obrazky` (`Kategorie_id`, `Obrazky_id`) VALUES (2, 3);
+INSERT INTO `bazos`.`Kategorie_ma_Obrazky` (`Kategorie_id`, `Obrazky_id`) VALUES (3, 4);
+INSERT INTO `bazos`.`Kategorie_ma_Obrazky` (`Kategorie_id`, `Obrazky_id`) VALUES (4, 5);
+INSERT INTO `bazos`.`Kategorie_ma_Obrazky` (`Kategorie_id`, `Obrazky_id`) VALUES (5, 6);
 
 COMMIT;
 
