@@ -57,7 +57,7 @@ class InzeratFactory
 {
     public static function createInzerat($id, $conn)
     {
-        $getinzeraty = mysqli_query($conn,"SELECT * FROM inzerat JOIN uzivatel_vytvoril_inzerat ON uzivatel_vytvoril_inzerat.Inzerat_id = inzerat.id WHERE inzerat.id = $id");
+        $getinzeraty = mysqli_query($conn,"SELECT * FROM Inzerat JOIN Uzivatel_vytvoril_inzerat ON Uzivatel_vytvoril_inzerat.Inzerat_id = Inzerat.id WHERE Inzerat.id = $id");
         foreach ($getinzeraty as $getinzerat){
             $inzeratid = $getinzerat["id"];
             $inzeratkratkypopis = $getinzerat["kratkypopis"];

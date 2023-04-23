@@ -27,15 +27,15 @@ class KategorieFactory
 {
     public static function createKategorie($id, $conn)
     {
-        $getkategories = mysqli_query($conn,"SELECT * FROM kategorie JOIN kategorie_ma_obrazky ON 
-    kategorie_ma_obrazky.Kategorie_id = kategorie.id 
-         JOIN obrazky ON obrazky.id = kategorie_ma_obrazky.obrazky_id
-         WHERE kategorie.id = $id");
+        $getkategories = mysqli_query($conn,"SELECT * FROM Kategorie JOIN Kategorie_ma_obrazky ON 
+    Kategorie_ma_obrazky.Kategorie_id = Kategorie.Id 
+         JOIN Obrazky ON Obrazky.Id = Kategorie_ma_obrazky.Obrazky_id
+         WHERE Kategorie.Id = $id");
         foreach ($getkategories as $getkategorie){
-            $kategorieid = $getkategorie["id"];
-            $kategorienazev = $getkategorie["nazev"];
+            $kategorieid = $getkategorie["Id"];
+            $kategorienazev = $getkategorie["Nazev"];
             $kategorieobrazekid = $getkategorie["Obrazky_id"];
-            $kategorieobrazeksrc = $getkategorie["src"];
+            $kategorieobrazeksrc = $getkategorie["Src"];
 
             $kategorie = new Kategorie($kategorieid,$kategorienazev,$kategorieobrazeksrc);
         }

@@ -33,7 +33,7 @@ if (isset($_POST['submit'])) {
 
 
 //přidej inzerát
-    $pridejinzerat = "INSERT INTO inzerat (kratkypopis,dlouhypopis,cena,tel,lokace,inzerat_status_id,zbozi_id) VALUES (?,?,?,?,?,$status,$zboziid)";
+    $pridejinzerat = "INSERT INTO Inzerat (kratkypopis,dlouhypopis,cena,tel,lokace,inzerat_status_id,zbozi_id) VALUES (?,?,?,?,?,$status,$zboziid)";
     $stmt = $conn->prepare($pridejinzerat);
     $stmt->bind_param("ssiis", $kratkypopis, $dlouhypopis, $cena, $tel, $lokace);
     $stmt->execute();
@@ -42,13 +42,13 @@ if (isset($_POST['submit'])) {
 //přidej vazbu mezi uživatelem a inzerátem
     $dnesnidatum = date("Y-m-d");
 
-    $pridejvazbu = "INSERT INTO uzivatel_vytvoril_inzerat (Uzivatel_id, inzerat_id, datum_zalozeni) VALUES (?,?,'$dnesnidatum')";
+    $pridejvazbu = "INSERT INTO Uzivatel_vytvoril_inzerat (Uzivatel_id, inzerat_id, datum_zalozeni) VALUES (?,?,'$dnesnidatum')";
     $stmt = $conn->prepare($pridejvazbu);
     $stmt->bind_param("ss", $uzivatelid, $id);
     $stmt->execute();
 
 //vytvoř zboží má kategorii
-    $zbozimakategorii = mysqli_query($conn,"INSERT INTO `zbozi_ma_kategorii` (`Zbozi_id`, `Kategorie_id`) VALUES ($zboziid, $kategorie)");
+    $zbozimakategorii = mysqli_query($conn,"INSERT INTO `Zbozi_ma_kategorii` (`Zbozi_id`, `Kategorie_id`) VALUES ($zboziid, $kategorie)");
 
 
     if (isset($_FILES['images'])) {
@@ -68,7 +68,7 @@ if (isset($_POST['submit'])) {
                     $error = "Soubor $name byl úspěšně nahrán.<br>";
 
                     // Vložení záznamu do databáze
-                    $vlozobrazekdodb = "INSERT INTO obrazky (nazev, src, alt) VALUES ('$nazev','$name','$nazev')";
+                    $vlozobrazekdodb = "INSERT INTO Obrazky (nazev, src, alt) VALUES ('$nazev','$name','$nazev')";
                     if ($conn->query($vlozobrazekdodb) === TRUE) {
                         $error = "Záznam byl úspěšně vložen do databáze.<br>";
                     } else {
@@ -77,7 +77,7 @@ if (isset($_POST['submit'])) {
 
                     //vytvoř vazbu mezi zbozi a obrazek
                     $last_id = $conn->insert_id;
-                    $vytvorvazbu = "INSERT INTO `zbozi_ma_obrazky` (`Zbozi_id`, `Obrazky_id`) VALUES ('$zboziid', '$last_id');";
+                    $vytvorvazbu = "INSERT INTO `Zbozi_ma_obrazky` (`Zbozi_id`, `Obrazky_id`) VALUES ('$zboziid', '$last_id');";
                     if ($conn->query($vytvorvazbu) === TRUE) {
                         $error = "Vazba byla úspěšně vytvořena v databázi.<br>";
                     } else {

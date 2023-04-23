@@ -1,25 +1,28 @@
 <?php
 require("../connect.php");
 
-$email 	= htmlspecialchars($_POST["email"]);
-$password 	= md5(htmlspecialchars($_POST["password"]));
+$email = htmlspecialchars($_POST["email"]);
+$password = md5(htmlspecialchars($_POST["password"]));
 
-//echo $email.$password;
+$stmt = mysqli_prepare($conn, "SELECT id, jmeno, opravneni FROM Uzivatel WHERE email = ? AND heslo = ?");
+mysqli_stmt_bind_param($stmt, "ss", $email, $password);
+mysqli_stmt_execute($stmt);
+mysqli_stmt_store_result($stmt);
 
-$usercheck = mysqli_query($conn,"SELECT * FROM Uzivatel WHERE email = '$email'");
-$row_uzivatel = mysqli_fetch_assoc($usercheck);
+if(mysqli_stmt_num_rows($stmt) > 0) {
+    mysqli_stmt_bind_result($stmt, $id, $jmeno, $opravneni);
+    mysqli_stmt_fetch($stmt);
 
-if(mysqli_num_rows($usercheck) > 0){
-    //uzivatel existuje
-    @session_start();
-    $_SESSION["jmeno"] 				= $row_uzivatel["jmeno"];
-    $_SESSION["id"] 				= $row_uzivatel["id"];
-    $_SESSION["opravneni"]               = $row_uzivatel["opravneni"];
-    $id = $_SESSION["id"];
+    session_start();
+    $_SESSION["jmeno"] = $jmeno;
+    $_SESSION["id"] = $id;
+    $_SESSION["opravneni"] = $opravneni;
+
     header("Location: ../index.php?pages=profile&id=$id");
-}
-else{
+} else {
     //uzivatel neexistuje
 }
 
+mysqli_stmt_close($stmt);
+mysqli_close($conn);
 ?>

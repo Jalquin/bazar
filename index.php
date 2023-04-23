@@ -30,14 +30,12 @@ $pagename = $splitpage[0];
 <?php
 
 include_once("includes/header.php");
-?>
-<?php
+
 if (file_exists("templates/" . $splitpage[0] . ".php"))
     include_once("templates/" . $splitpage[0] . ".php");
 else
     include_once("templates/404.php");
-?>
-<?php
+
 include_once("includes/footer.php");
 
 ?>

@@ -51,21 +51,21 @@ if (isset($_POST['submit'])) {
 
 //určitě ošetřit délku názvu, min a max
 
-    $updatezbozi = "UPDATE `zbozi` SET `nazev` = '$nazev' WHERE `zbozi`.`id` = ?";
+    $updatezbozi = "UPDATE `Zbozi` SET `nazev` = '$nazev' WHERE `Zbozi`.`id` = ?";
     $stmt = $conn->prepare($updatezbozi);
     $stmt->bind_param("i", $zboziid);
     $stmt->execute();
 
-    $updateinzerat = "UPDATE `inzerat` SET `kratkypopis` = '$kratkypopis',
+    $updateinzerat = "UPDATE `Inzerat` SET `kratkypopis` = '$kratkypopis',
                      `dlouhypopis` = '$dlouhypopis', `cena` = '$cena',
                      `tel` = '$tel', `lokace` = '$lokace',
-                     `inzerat_status_id` = '$status' WHERE `inzerat`.`id` = ? AND `inzerat`.`Zbozi_id` = ?";
+                     `inzerat_status_id` = '$status' WHERE `Inzerat`.`id` = ? AND `Inzerat`.`Zbozi_id` = ?";
     $stmt = $conn->prepare($updateinzerat);
     $stmt->bind_param("ii", $inzeratid, $zboziid);
     $stmt->execute();
 
 //aktualizuj zbozi_ma_kategorii
-    $updatezbozimakategorii = "UPDATE `zbozi_ma_kategorii` SET `Kategorie_id` = ? WHERE `zbozi_ma_kategorii`.`Zbozi_id` = $zboziid";
+    $updatezbozimakategorii = "UPDATE `Zbozi_ma_kategorii` SET `Kategorie_id` = ? WHERE `Zbozi_ma_kategorii`.`Zbozi_id` = $zboziid";
     $stmt = $conn->prepare($updatezbozimakategorii);
     $stmt->bind_param("i", $kategorie);
     $stmt->execute();
@@ -84,7 +84,7 @@ if (isset($_POST['submit'])) {
                     $error = "Soubor $name již byl nahrán.<br>";
                     /*VELMI TESTOVACI USE CASE*/
                     //getidobrazku
-                    $getidobrazku = "SELECT * FROM obrazky WHERE src = '$name' LIMIT 1";
+                    $getidobrazku = "SELECT * FROM Obrazky WHERE src = '$name' LIMIT 1";
                     $result = $conn->query($getidobrazku);
                     if ($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()) {
@@ -92,7 +92,7 @@ if (isset($_POST['submit'])) {
 
                             //ošetři jestli vazba už neexistuje
 
-                            $vytvorvazbu = "INSERT INTO `zbozi_ma_obrazky` (`Zbozi_id`, `Obrazky_id`) VALUES ('$zboziid', '$last_id');";
+                            $vytvorvazbu = "INSERT INTO `Zbozi_ma_obrazky` (`Zbozi_id`, `Obrazky_id`) VALUES ('$zboziid', '$last_id');";
                             if ($conn->query($vytvorvazbu) === TRUE) {
                                 $error = "Vazba byla úspěšně vytvořena v databázi.<br>";
                             } else {
@@ -105,7 +105,7 @@ if (isset($_POST['submit'])) {
                     $error = "Soubor $name byl úspěšně nahrán.<br>";
 
                     // Vložení záznamu do databáze
-                    $vlozobrazekdodb = "INSERT INTO obrazky (nazev, src, alt) VALUES ('$nazev','$name','$nazev')";
+                    $vlozobrazekdodb = "INSERT INTO Obrazky (nazev, src, alt) VALUES ('$nazev','$name','$nazev')";
                     if ($conn->query($vlozobrazekdodb) === TRUE) {
                         $error = "Záznam byl úspěšně vložen do databáze.<br>";
                     } else {
@@ -114,7 +114,7 @@ if (isset($_POST['submit'])) {
 
                     //vytvoř vazbu mezi zbozi a obrazek
                     $last_id = $conn->insert_id;
-                    $vytvorvazbu = "INSERT INTO `zbozi_ma_obrazky` (`Zbozi_id`, `Obrazky_id`) VALUES ('$zboziid', '$last_id');";
+                    $vytvorvazbu = "INSERT INTO `Zbozi_ma_obrazky` (`Zbozi_id`, `Obrazky_id`) VALUES ('$zboziid', '$last_id');";
                     if ($conn->query($vytvorvazbu) === TRUE) {
                         $error = "Vazba byla úspěšně vytvořena v databázi.<br>";
                     } else {
@@ -168,7 +168,7 @@ if (isset($_POST['submit'])) {
                 <label class="form-label" for="photos">Obrázky:</label>
                 <!-- výpis obrázku -->
                 <?php
-                $getobrazky = "SELECT * FROM zbozi_ma_obrazky JOIN obrazky ON obrazky.id = zbozi_ma_obrazky.Obrazky_id WHERE Zbozi_id = '$zboziid'";
+                /*$getobrazky = "SELECT * FROM Zbozi_ma_obrazky JOIN Obrazky ON Obrazky.id = Zbozi_ma_obrazky.Obrazky_id WHERE Zbozi_id = '$zboziid'";
                 $result = $conn->query($getobrazky);
                 while($row = $result->fetch_assoc()) {
                     $image_id = $row['Obrazky_id'];
@@ -179,7 +179,7 @@ if (isset($_POST['submit'])) {
                     ?>
                     <a href="scripts/deleteimage.php?id=<?=$image_id;?>&zboziid=<?=$zboziid;?>">X</a>
                 <?php
-                }
+                }*/
                 ?>
             </div>
             <div class="form-floating mb-3">

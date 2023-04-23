@@ -1,12 +1,12 @@
 <?php
 $idkategorie = $_GET["id"] ?? 1;
 
-$getallkategorie = mysqli_query($conn,"SELECT * FROM kategorie");
-$getinzeratykategorie = "SELECT * FROM Kategorie JOIN Zbozi_ma_kategorii ON kategorie.id = Zbozi_ma_kategorii.kategorie_id 
-    JOIN Zbozi ON Zbozi_ma_kategorii.zbozi_id = Zbozi.id 
+$getallkategorie = mysqli_query($conn,"SELECT * FROM Kategorie");
+$getinzeratykategorie = "SELECT * FROM Kategorie JOIN Zbozi_ma_kategorii ON Kategorie.id = Zbozi_ma_kategorii.Kategorie_id 
+    JOIN Zbozi ON Zbozi_ma_kategorii.Zbozi_id = Zbozi.id 
     JOIN Inzerat ON Zbozi.id = Inzerat.id 
-    JOIN uzivatel_vytvoril_inzerat ON uzivatel_vytvoril_inzerat.Inzerat_id = inzerat.id 
-    JOIN uzivatel ON uzivatel.id = uzivatel_vytvoril_inzerat.Uzivatel_id WHERE Zbozi_ma_kategorii.Kategorie_id = ? AND inzerat.inzerat_status_id = 1";
+    JOIN Uzivatel_vytvoril_inzerat ON Uzivatel_vytvoril_inzerat.Inzerat_id = Inzerat.id 
+    JOIN Uzivatel ON Uzivatel.id = Uzivatel_vytvoril_inzerat.Uzivatel_id WHERE Zbozi_ma_kategorii.Kategorie_id = ? AND Inzerat.Inzerat_status_id = 1";
 $stmt = $conn->prepare($getinzeratykategorie);
 $stmt->bind_param("i", $idkategorie);
 $stmt->execute();
@@ -67,8 +67,8 @@ $result = $stmt->get_result();
                             $row = $result->fetch_assoc();
 
                             $zboziid = $row["Zbozi_id"];
-                            $selectallpictures = mysqli_query($conn,"SELECT * FROM zbozi_ma_obrazky JOIN
-    obrazky ON obrazky.id = zbozi_ma_obrazky.Obrazky_id WHERE zbozi_ma_obrazky.Zbozi_id = $zboziid LIMIT 1");
+                            $selectallpictures = mysqli_query($conn,"SELECT * FROM Zbozi_ma_obrazky JOIN
+    Obrazky ON Obrazky.id = Zbozi_ma_obrazky.Obrazky_id WHERE Zbozi_ma_obrazky.Zbozi_id = $zboziid LIMIT 1");
                             $zboziobrazek = "images/default.jpg";
                             foreach ($selectallpictures as $zbozipicture){
                                 $zboziobrazek = "images/inzeraty/".$zbozipicture["src"];

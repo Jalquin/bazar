@@ -1,8 +1,6 @@
 <?php
-$getkategorie = mysqli_query($conn,"SELECT * FROM kategorie LIMIT 3");
-
-
-$getinzeraty = mysqli_query($conn,"SELECT * FROM inzerat JOIN zbozi ON inzerat.id = zbozi.id WHERE inzerat.inzerat_status_id = 1 LIMIT 6");
+$getkategorie = mysqli_query($conn,"SELECT * FROM Kategorie LIMIT 3");
+$getinzeraty = mysqli_query($conn,"SELECT * FROM Inzerat JOIN Zbozi ON Inzerat.Id = Zbozi.Id WHERE Inzerat.Inzerat_status_id = 1 LIMIT 6");
 ?>
 
 <main class="container">
@@ -50,20 +48,22 @@ $getinzeraty = mysqli_query($conn,"SELECT * FROM inzerat JOIN zbozi ON inzerat.i
     </div>
 
     <div class="row justify-content-center text-center mb-2">
-
-        <?php foreach($getkategorie as $kategorie):
-            $takategorie = KategorieFactory::createKategorie($kategorie["id"],$conn); ?>
+        <?php /*foreach($getkategorie as $kategorie):
+            $takategorie = KategorieFactory::createKategorie($kategorie["id"],$conn);
+        $idkategorie = $takategorie->getId();
+        $srckategorie = "images/".$takategorie->getImage();
+        $nazevkategorie = $takategorie->getNazev();
+        ?>
             <div class="col-6 col-lg-4 container-img-text">
-                <a href="index.php?pages=listings&id=<?=$kategorie["id"];?>">
-                    <img alt="<?= $takategorie->getNazev();?>" class="img-fluid img-text-over"
-                         src="<?= "images/".$takategorie->getImage();?>">
+                <a href="index.php?pages=listings&id=<?= $idkategorie;?>">
+                    <img alt="<?=  $nazevkategorie;?>" class="img-fluid img-text-over"
+                         src="<?=  $srckategorie;?>">
                     <div class="text-over-img">
-                        <h2><?= $takategorie->getNazev();?></h2>
+                        <h2><?= $nazevkategorie;?></h2>
                     </div>
                 </a>
             </div>
-        <?php endforeach; ?>
-
+        <?php endforeach;*/ ?>
     </div>
 
     <div class="row mb-2">
@@ -81,8 +81,8 @@ $getinzeraty = mysqli_query($conn,"SELECT * FROM inzerat JOIN zbozi ON inzerat.i
 
                         foreach ($inzerat->getZbozi() as $zbozi):
                         $zboziid = $zbozi->getId();
-                            $selectallpictures = mysqli_query($conn,"SELECT * FROM zbozi_ma_obrazky JOIN
-    obrazky ON obrazky.id = zbozi_ma_obrazky.Obrazky_id WHERE zbozi_ma_obrazky.Zbozi_id = $zboziid LIMIT 1");
+                            $selectallpictures = mysqli_query($conn,"SELECT * FROM Zbozi_ma_obrazky JOIN
+    Obrazky ON Obrazky.id = Zbozi_ma_obrazky.Obrazky_id WHERE Zbozi_ma_obrazky.Zbozi_id = $zboziid LIMIT 1");
                             $zboziobrazek = "images/default.jpg";
                             foreach ($selectallpictures as $zbozipicture){
                                 $zboziobrazek = "images/inzeraty/".$zbozipicture["src"];
